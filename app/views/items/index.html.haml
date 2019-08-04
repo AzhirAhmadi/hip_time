@@ -1,4 +1,25 @@
-%h1= params[:controller]+"->"+params[:action]
-- @items.each do |item|
-    %h2= link_to item.title, item
-    %p= item.desc
+-if user_signed_in?
+    %div.col-md-10.col-md-offset-1
+        - @items.each do |item|
+            %div.index-wrapper
+                -if item.complete?
+                    %div.row.item
+                        %div.col-md-2
+                            %p= link_to "Completed",complete_item_path(item), method: :patch, class: "btn btn-success disabled"
+                        %div.col-md-2
+                            %p= link_to "Delete", item, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
+                        %div.col-md-8
+                            %h2.item-title= link_to item.title, item
+                            %p.item-title.item-title= item.desc
+                            %p.time-created-at.item-sub-title= time_ago_in_words(item.completed_at)
+                -else                
+                    %div.row.item
+                        %div.col-md-2
+                            %p= link_to "Complete",complete_item_path(item), method: :patch, class: "btn btn-success"
+                        %div.col-md-8
+                            %h2.item-title= link_to item.title, item
+                            %p.item-sub-title.item-desc= item.desc
+                        %div.col-md-2
+                            %p= link_to "Delete", item, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
+-else
+    = render 'welcome_page'
