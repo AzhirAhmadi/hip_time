@@ -39,8 +39,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 
 # my gems
-gem "simple_form"
-gem "bootstrap-sass"
+gem 'simple_form'
+gem 'jquery-rails'
+gem 'bootstrap'
+gem 'annotate'
+gem 'haml'
+gem 'devise'
 
 
 group :development, :test do

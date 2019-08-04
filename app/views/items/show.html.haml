@@ -1,0 +1,9 @@
+%div.col-md-10.offset-md-1
+    %h2= @item.title
+    %p= @item.desc
+
+    %div.col-md-4.offset-md-4
+        = link_to "Edit", edit_item_path, class: "btn btn-primary"
+        = link_to "Delete", item_path(@item), method: :delete, data: { confirm: "Are youe sure?"}, class: "btn btn-danger"
+
+        = link_to "Back", root_path, class: "btn btn-secondary"

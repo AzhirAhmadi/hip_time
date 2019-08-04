@@ -1,0 +1,5 @@
+= simple_form_for @item do |f|
+    = f.input :title
+    = f.input :desc
+    = f.button :submit, class: "btn btn-success"
+    = link_to "Cancel", items_path, class: "btn btn-secondary"
