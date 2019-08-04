@@ -7,5 +7,31 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-  %body
-    = yield
+%body
+  %nav.navbar.navbar-default
+    %div.container
+      %div.navbar-header
+        = link_to "Hiptime", root_path, class:"navbar-brand"
+      %ul.nav.navbar-nav.ml-auto
+        -if current_user.present?
+          %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+        -else
+          %li= link_to "Log In", new_user_session_path
+          %li= link_to "Sign Up", new_user_registration_path
+          
+
+        -if user_signed_in?
+          = link_to "Create Item", new_item_path, class: "navbar-text navbar-link"
+
+  %p.notice= notice
+  %p.alert= alert
+
+  %div.container
+  = yield
+
+
+
+
+
+
+
